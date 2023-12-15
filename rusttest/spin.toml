@@ -1,0 +1,18 @@
+spin_manifest_version = 2
+
+[application]
+name = "rusttest"
+version = "0.1.0"
+authors = ["Jack Kozik <jackkozik@email.com>"]
+description = ""
+
+[[trigger.http]]
+route = "/..."
+component = "rusttest"
+
+[component.rusttest]
+source = "target/wasm32-wasi/release/rusttest.wasm"
+allowed_outbound_hosts = []
+[component.rusttest.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
